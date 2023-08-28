@@ -17,36 +17,33 @@
       </div>
     </div>
 
-    <div class="pt-10"></div>
+    <div class="pt-6"></div>
 
     <div class="flex justify-center items-center flex-col">
-      <div class="bg-white px-4 py-1">
-        <video ref="video" class="w-64 h-56 autoplay"></video>
+      <div class="">
+        <video ref="video" class="w-56 h-48 autoplay"></video>
       </div>
-      <div class="pt-5"></div>
       <div class="flex justify-center items-center">
         <button
-          class="bg-[#698694] py-3 px-6 rounded-md text-center shadow-md"
+          class="rounded-md text-center bg-white py-3 px-6 border border-[#97aeb9]"
           id="openCameraButton"
           @click="isCameraOpen ? takePhoto() : openCamera()"
         >
-          <span class="text-white font-bold text-xl">
+          <span class="text-[#97aeb9] font-semibold text-xl">
             {{ isCapturing ? "拍照中..." : isCameraOpen ? "拍照" : "開啟相機" }}
           </span>
         </button>
       </div>
-      <!-- <a class="pt-6">
-        <button @click="takePhoto" :disabled="isCapturing || !isCameraOpen">
-          <span
-            class="bg-[#698694] rounded-md text-center shadow-md text-white font-bold text-lg px-5 py-4"
-          >
-            {{ isCapturing ? "拍照中..." : "拍照" }}
-          </span>
-        </button>
-      </a> -->
-      <img v-if="capturedImage" :src="capturedImage" class="pt-6" />
-      <router-link :to="{ name: 'confirm', params: { capturedImage } }">
-      </router-link>
+      <img v-if="capturedImage" :src="capturedImage" class="pt-5 w-56 h-48" />
+
+      <div class="pt-3"></div>
+      <button
+        class="bg-[#698694] py-3 px-6 rounded-md text-center shadow-md"
+        id="openCameraButton"
+        v-if="capturedImage"
+      >
+        <span class="text-white font-semibold text-xl">確定</span>
+      </button>
     </div>
 
     <div class="absolute flex flex-col items-end right-0">
@@ -105,4 +102,22 @@ const takePhoto = () => {
     isCapturing.value = false;
   }
 };
+
+// const navigateToPage = () => {
+//   if (capturedImage.value) {
+//     // 图片上传成功后，根据条件决定跳转到不同的页面
+//     if (条件) {
+//       // 根据条件跳转到 /dy 页面
+//       router.push({ name: "dy" });
+//     } else {
+//       // 否则跳转到 /fail 页面
+//       router.push({ name: "fail" });
+//     }
+//   }
+// };
+
+// const navigateToPage = () => {
+//   router.push("/dy");
+// };
 </script>
+<!-- @click="navigateToPage" -->
